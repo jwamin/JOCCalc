@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		572AAC45243DBB92000B8303 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 572AAC44243DBB92000B8303 /* main.c */; };
+		572AAC4D243DCFC9000B8303 /* jccalculator.c in Sources */ = {isa = PBXBuildFile; fileRef = 572AAC4C243DCFC9000B8303 /* jccalculator.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		572AAC41243DBB92000B8303 /* CCalc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CCalc; sourceTree = BUILT_PRODUCTS_DIR; };
 		572AAC44243DBB92000B8303 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		572AAC4B243DCF7C000B8303 /* CalcHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalcHeader.h; sourceTree = "<group>"; };
+		572AAC4C243DCFC9000B8303 /* jccalculator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jccalculator.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				572AAC44243DBB92000B8303 /* main.c */,
+				572AAC4B243DCF7C000B8303 /* CalcHeader.h */,
+				572AAC4C243DCFC9000B8303 /* jccalculator.c */,
 			);
 			path = CCalc;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572AAC4D243DCFC9000B8303 /* jccalculator.c in Sources */,
 				572AAC45243DBB92000B8303 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
