@@ -7,6 +7,8 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "CalcHeader.h"
 
 void printPrompt(float current){
@@ -75,33 +77,39 @@ void* parseKeyboardInput(float current, const char* input){
   
   lhs = atoi(lhsString);
   rhs = atoi(rhsString);
-  
-  printf("%d %c %d\n",lhs,operator,rhs);
+
   float flhs = (float)lhs;
   float flrhs = (float)rhs;
   printf("%0.1f %c %0.1f\n",flhs,operator,flrhs);
   
-  union ArithmeticSum *data = malloc(sizeof(union ArithmeticSum));
+struct ArithmeticSum *data = malloc(sizeof(struct ArithmeticSum));
+  
+  
   data->lhs = flhs;
   data->rhs = flrhs;
-  data->operator = operator;
-  
-   printf("%f %c %f\n",data->lhs,data->operator,data->rhs);
+  data->op = operator;
   
   return data;
 }
 
-float calculate(union ArithmeticSum* operation){
+float calculate(struct ArithmeticSum* operation){
   
   //calculator code goes here
-  char operator = operation->operator;
+  char operator = operation->op;
+  float product;
   
   switch(operator){
     case '*':
-      return operation->lhs * operation->rhs;
+      product = operation->lhs * operation->rhs;
       break;
     default:
       return -1;
   }
+  
+  //if print selected // in this case yes
+   printf("%0.2f %c %0.2f = %0.2f\n",operation->lhs,operator,operation->rhs,product);
+  
+  
+  return product;
   
 }

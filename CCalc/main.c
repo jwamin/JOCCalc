@@ -25,6 +25,7 @@ int main(int argc, const char * argv[]) {
   
   //Main run loop
   int running = 1;
+  
   float current = 0;
   
   while(running == 1){
@@ -38,13 +39,13 @@ int main(int argc, const char * argv[]) {
     
     const char* input = getKeyboardInput();
     
-    void* currentOperation = (union ArithmeticSum*)parseKeyboardInput(current, input);
+    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input);
     
     current = calculate(currentOperation);
     
-    
     printPrompt(current);
      printf("\n");
+    
     //get keyboard input,
     
     //parse keyboard in put

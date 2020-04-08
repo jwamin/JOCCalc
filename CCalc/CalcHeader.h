@@ -11,16 +11,24 @@
 
 #define MULTIPLY '*'
 
-union ArithmeticSum {
+//Union unsuitable, shares the same memory for potentially multiple value, size of union is size of largest member
+//union ArithmeticSum {
+//  float lhs;
+//  float rhs;
+//  char operator;
+//};
+
+// struct will store all values
+struct ArithmeticSum {
   float lhs;
   float rhs;
-  char operator;
+  char op;
 };
 
 void printPrompt(float current);
 
 void* parseKeyboardInput(float current, const char* input);
 
-float calculate(union ArithmeticSum* operation);
+float calculate(struct ArithmeticSum* operation);
 
 #endif /* CalcHeader_h */
