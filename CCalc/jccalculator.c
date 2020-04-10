@@ -18,6 +18,11 @@ void printPrompt(float current){
   const char* prompt = "JOCCalc ";
   const char* endPrompt = " :> ";
   
+  if (current == -1){
+    printf("%s Syn Error %s",prompt,endPrompt);
+    return;
+  }
+  
   if (ceil(current) == current) {
     //round number
     printf("%s%.0f%s",prompt,current,endPrompt);
@@ -151,6 +156,7 @@ float calculate(struct ArithmeticOperation* operation){
       product = operation->lhs - operation->rhs;
       break;
     default:
+      printf("Syntax Error\n");
       return -1;
   }
   
