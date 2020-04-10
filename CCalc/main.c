@@ -11,14 +11,30 @@
 #include <math.h>
 #include "CalcHeader.h"
 
-const char* getKeyboardInput(){
+struct Input {
+  int lenght;
+  const char* input;
+};
+
+struct Input* getKeyboardInput(){
   
-  //look for end of line character \n
+  //get character input until newline character
   
-//  if (input[i] == EOF){
-//    break;
-//  }
-  return "2 * 4";
+  char *input = malloc(20 * sizeof(char));
+  int index = 0;
+  
+  char c = getchar();
+  while (c != '\n'){
+    input[index] = c;
+    index++;
+    c = getchar();
+  }
+  
+  struct Input *myinput = malloc(sizeof(struct Input));
+  myinput->lenght = index;
+  myinput->input = input;
+  
+  return myinput;//"2 * 4";
 }
 
 int main(int argc, const char * argv[]) {
@@ -30,16 +46,15 @@ int main(int argc, const char * argv[]) {
   
   while(running == 1){
     
-    current = 5.0;
-    
     //present pormpt with current value (nil)
     printPrompt(current);
     
     printf("\n");
     
-    const char* input = getKeyboardInput();
+    struct Input* input = getKeyboardInput();
+    printf("this is my meyboard input |%s| :end\n",input->input);
     
-    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input);
+    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input->input);
     
     current = calculate(currentOperation);
     
