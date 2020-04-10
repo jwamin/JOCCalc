@@ -14,7 +14,9 @@
 * Clear command
 * Exit signal 
 * paper trail
+* save paper trail
+* clear paper trail
 * More processes sqrt etc
 
 #### Libraries
-`<stdio.h>``<stdlib.h>`
+`<stdio.h>`  `<stdlib.h>` `<math.h>`
