@@ -12,11 +12,13 @@
 
 ### TODO:
 
-* Clear command
-* paper trail
-* save paper trail
-* clear paper trail
+* Refactor Exit signal test to switch statement, enable more commands:
+  * Clear command
+  * paper trail
+  * save paper trail
+  * clear paper trail
 * More processes sqrt etc
+* Static Library
 
 #### Libraries
 `<stdio.h>`  `<stdlib.h>` `<math.h>`
