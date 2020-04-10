@@ -10,8 +10,12 @@
 #define CalcHeader_h
 
 #define MULTIPLY '*'
+#define DIVIDE '/'
+#define SUBTRACT '-'
+#define ADD '+'
 
 //Union unsuitable, shares the same memory for potentially multiple value, size of union is size of largest member
+//very intersting language feature though!
 //union ArithmeticSum {
 //  float lhs;
 //  float rhs;
@@ -25,9 +29,14 @@ struct ArithmeticSum {
   char op;
 };
 
+struct Input {
+  int lenght;
+  const char* input;
+};
+
 void printPrompt(float current);
 
-void* parseKeyboardInput(float current, const char* input);
+void* parseKeyboardInput(float current, struct Input *input);
 
 float calculate(struct ArithmeticSum* operation);
 

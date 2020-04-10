@@ -11,11 +11,6 @@
 #include <math.h>
 #include "CalcHeader.h"
 
-struct Input {
-  int lenght;
-  const char* input;
-};
-
 struct Input* getKeyboardInput(){
   
   //get character input until newline character
@@ -52,7 +47,7 @@ int main(int argc, const char * argv[]) {
     struct Input* input = getKeyboardInput();
     printf("this is my meyboard input |%s| :end\n",input->input);
     
-    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input->input);
+    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input);
     
     current = calculate(currentOperation);
     

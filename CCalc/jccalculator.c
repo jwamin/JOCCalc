@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include "CalcHeader.h"
+#define MAX 20
+
 
 void printPrompt(float current){
   
@@ -27,11 +29,11 @@ void printPrompt(float current){
 
 
 
-void* parseKeyboardInput(float current, const char* input){
+void* parseKeyboardInput(float current, struct Input *input){
   
-  char lhsString[10];
+  char lhsString[MAX];
   int lhsStringCount = 0;
-  char rhsString[10];
+  char rhsString[MAX];
   int rhsStringCount = 0;
   
   int lhs, rhs; // integer, need to fix precision
@@ -40,11 +42,11 @@ void* parseKeyboardInput(float current, const char* input){
   //assume single line calculation
   //PROMPT:> OPERAND/OPERATOR/OPERAND
   
-  int inputSize = sizeof(char) * 5;
+  int inputSize = input->lenght;
   
   for (int i = 0;i<inputSize;i++){
     
-    char currentChar = input[i];
+    char currentChar = input->input[i];
     
     //first check for whitespace characters
     if (currentChar == ' '){
@@ -54,10 +56,20 @@ void* parseKeyboardInput(float current, const char* input){
     //first look for operators
     if (operator == '\0'){
        
-       if (currentChar == MULTIPLY){
-         operator = MULTIPLY;
+      switch(currentChar){
+        case MULTIPLY:
+          operator = currentChar;
           continue;
-       }
+        case DIVIDE:
+          operator = currentChar;
+          continue;
+        case ADD:
+          operator = currentChar;
+          continue;
+        case SUBTRACT:
+          operator = currentChar;
+          continue;
+      }
       
      }
     
@@ -75,6 +87,7 @@ void* parseKeyboardInput(float current, const char* input){
     
   }
   
+  
   lhs = atoi(lhsString);
   rhs = atoi(rhsString);
 
@@ -84,8 +97,7 @@ void* parseKeyboardInput(float current, const char* input){
   
 struct ArithmeticSum *data = malloc(sizeof(struct ArithmeticSum));
   
-  
-  data->lhs = flhs;
+  data->lhs = (flhs == 0) ? current : flhs; // if there was not left hand size, insert current
   data->rhs = flrhs;
   data->op = operator;
   
@@ -102,13 +114,22 @@ float calculate(struct ArithmeticSum* operation){
     case '*':
       product = operation->lhs * operation->rhs;
       break;
+    case '/':
+      product = operation->lhs / operation->rhs;
+      break;
+    case '+':
+      product = operation->lhs + operation->rhs;
+      break;
+    case '-':
+      product = operation->lhs - operation->rhs;
+      break;
     default:
       return -1;
   }
   
   //if print selected // in this case yes
+  //fix precision
    printf("%0.2f %c %0.2f = %0.2f\n",operation->lhs,operator,operation->rhs,product);
-  
   
   return product;
   
