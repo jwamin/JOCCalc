@@ -7,11 +7,11 @@
 * basic arithmetic operators `+ - * /` with `getchar()` keyboard input.
 * will accept two operands with an operator in between `operand operator operand`
 * will accept an `operator operand` statement, using the "current" result in memory for the left hand operand.
-* basic floating point precision
 * Exit signal by entering X at the prompt
 
 ### TODO:
 
+* fix precision of input, truncates floats to ints
 * Refactor Exit signal test to switch statement, enable more commands:
   * Clear command
   * paper trail
