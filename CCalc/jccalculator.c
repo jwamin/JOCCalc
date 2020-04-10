@@ -28,8 +28,29 @@ void printPrompt(float current){
 }
 
 
+struct KeyboardInput* getKeyboardInput(){
+  
+  //get character input until newline character
+  
+  char *input = malloc(20 * sizeof(char));
+  int index = 0;
+  
+  char c = getchar();
+  while (c != '\n'){
+    input[index] = c;
+    index++;
+    c = getchar();
+  }
+  
+  struct KeyboardInput *myinput = malloc(sizeof(struct KeyboardInput));
+  myinput->lenght = index;
+  myinput->input = input;
+  
+  return myinput;//"2 * 4";
+}
 
-void* parseKeyboardInput(float current, struct Input *input){
+
+void* parseKeyboardInput(float current, struct KeyboardInput *input){
   
   char lhsString[MAX];
   int lhsStringCount = 0;
@@ -48,14 +69,21 @@ void* parseKeyboardInput(float current, struct Input *input){
     
     char currentChar = input->input[i];
     
-    //first check for whitespace characters
+    //quit
+    if (i == 0 && currentChar == 'X'){
+      char* kill = malloc(sizeof(char));
+      *kill = currentChar;
+      return kill;
+    }
+    
+    //first check for and discount whitespace characters
     if (currentChar == ' '){
       continue;
     }
     
-    //first look for operators
+    //then look for operators
     if (operator == '\0'){
-       
+      
       switch(currentChar){
         case MULTIPLY:
           operator = currentChar;
@@ -71,7 +99,7 @@ void* parseKeyboardInput(float current, struct Input *input){
           continue;
       }
       
-     }
+    }
     
     //then operands
     if (operator == '\0'){
@@ -90,12 +118,11 @@ void* parseKeyboardInput(float current, struct Input *input){
   
   lhs = atoi(lhsString);
   rhs = atoi(rhsString);
-
+  
   float flhs = (float)lhs;
   float flrhs = (float)rhs;
-  printf("%0.1f %c %0.1f\n",flhs,operator,flrhs);
   
-struct ArithmeticSum *data = malloc(sizeof(struct ArithmeticSum));
+  struct ArithmeticOperation *data = malloc(sizeof(struct ArithmeticOperation));
   
   data->lhs = (flhs == 0) ? current : flhs; // if there was not left hand size, insert current
   data->rhs = flrhs;
@@ -104,7 +131,7 @@ struct ArithmeticSum *data = malloc(sizeof(struct ArithmeticSum));
   return data;
 }
 
-float calculate(struct ArithmeticSum* operation){
+float calculate(struct ArithmeticOperation* operation){
   
   //calculator code goes here
   char operator = operation->op;
@@ -129,7 +156,7 @@ float calculate(struct ArithmeticSum* operation){
   
   //if print selected // in this case yes
   //fix precision
-   printf("%0.2f %c %0.2f = %0.2f\n",operation->lhs,operator,operation->rhs,product);
+  printf("%0.2f %c %0.2f = %0.2f\n",operation->lhs,operator,operation->rhs,product);
   
   return product;
   

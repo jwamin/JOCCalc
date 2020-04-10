@@ -11,65 +11,42 @@
 #include <math.h>
 #include "CalcHeader.h"
 
-struct Input* getKeyboardInput(){
-  
-  //get character input until newline character
-  
-  char *input = malloc(20 * sizeof(char));
-  int index = 0;
-  
-  char c = getchar();
-  while (c != '\n'){
-    input[index] = c;
-    index++;
-    c = getchar();
-  }
-  
-  struct Input *myinput = malloc(sizeof(struct Input));
-  myinput->lenght = index;
-  myinput->input = input;
-  
-  return myinput;//"2 * 4";
-}
-
 int main(int argc, const char * argv[]) {
   
-  //Main run loop
+  //Main run loop flag
   int running = 1;
   
+  //the result of the last calculation, visible in prompt
   float current = 0;
   
   while(running == 1){
     
-    //present pormpt with current value (nil)
+    //present prompt with current value (nil)
     printPrompt(current);
     
-    struct Input* input = getKeyboardInput();
-    printf("this is my meyboard input |%s| :end\n",input->input);
+    //Get Input from Keyboard
+    struct KeyboardInput* input = getKeyboardInput();
     
-    void* currentOperation = (struct ArithmeticSum*)parseKeyboardInput(current, input);
+    //Parse keyboard input
+    void* currentOperation = parseKeyboardInput(current, input);
     
-    current = calculate(currentOperation);
-    
-    printPrompt(current);
-     printf("\n");
-    
-    //get keyboard input,
-    
-    //parse keyboard in put
-    // just operator and operand - use current as first operand
-    // operand operator and operand
-    
-    // c key + enter clears
-    
-    //calculate answer
-    
-    
-    
-    //continue loop
-    
-    //exit loop
-    running = 0;
+    //test for exit signal
+    char* signal = (char*)currentOperation;
+    if (*signal == 'X'){
+      // if x key
+      //exit loop when current scope ends
+      running = 0;
+      
+    } else if (1==2){
+      //TODO Next:
+      // c key + enter clears
+      // current = 0
+      // history = null
+    } else {
+      //perform Calculation
+      current = calculate(currentOperation);
+      //then continue input run loop
+    }
     
   }
   

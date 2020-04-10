@@ -23,21 +23,21 @@
 //};
 
 // struct will store all values
-struct ArithmeticSum {
+struct ArithmeticOperation {
   float lhs;
   float rhs;
   char op;
 };
 
-struct Input {
+//
+struct KeyboardInput {
   int lenght;
   const char* input;
 };
 
 void printPrompt(float current);
-
-void* parseKeyboardInput(float current, struct Input *input);
-
-float calculate(struct ArithmeticSum* operation);
+struct KeyboardInput* getKeyboardInput(void);
+void* parseKeyboardInput(float current, struct KeyboardInput *input);
+float calculate(struct ArithmeticOperation* operation);
 
 #endif /* CalcHeader_h */
