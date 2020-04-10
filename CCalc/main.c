@@ -49,8 +49,6 @@ int main(int argc, const char * argv[]) {
     //present pormpt with current value (nil)
     printPrompt(current);
     
-    printf("\n");
-    
     struct Input* input = getKeyboardInput();
     printf("this is my meyboard input |%s| :end\n",input->input);
     
