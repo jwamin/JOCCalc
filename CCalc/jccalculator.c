@@ -62,7 +62,7 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
   char rhsString[MAX];
   int rhsStringCount = 0;
   
-  int lhs, rhs; // integer, need to fix precision
+  float lhs, rhs;
   char operator = '\0';
   
   //assume single line calculation
@@ -75,11 +75,20 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
     char currentChar = input->input[i];
     
     //quit
-    if (i == 0 && currentChar == 'X'){
+    if ( i == 0 && (currentChar == 'X' || currentChar == 'x') ){
       char* kill = malloc(sizeof(char));
       *kill = currentChar;
       return kill;
     }
+    
+    //clear
+    if ( i == 0 && (currentChar == 'C' || currentChar == 'c') ){
+      char* clear = malloc(sizeof(char));
+      *clear = currentChar;
+      return clear;
+    }
+    
+    //no program commands, continue with calcualtor input?
     
     //first check for and discount whitespace characters
     if (currentChar == ' '){
@@ -120,16 +129,16 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
     
   }
   
+  //get input, but truncate to int with atoi function
+  lhs = atof(lhsString);
+  rhs = atof(rhsString);
   
-  lhs = atoi(lhsString);
-  rhs = atoi(rhsString);
-  
-  float flhs = (float)lhs;
+  float fllhs = (float)lhs;
   float flrhs = (float)rhs;
   
   struct ArithmeticOperation *data = malloc(sizeof(struct ArithmeticOperation));
   
-  data->lhs = (flhs == 0) ? current : flhs; // if there was not left hand size, insert current
+  data->lhs = (fllhs == 0) ? current : fllhs; // if there was not left hand size, insert current
   data->rhs = flrhs;
   data->op = operator;
   

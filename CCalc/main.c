@@ -32,16 +32,13 @@ int main(int argc, const char * argv[]) {
     
     //test for exit signal
     char* signal = (char*)currentOperation;
-    if (*signal == 'X'){
+    
+    if (*signal == 'X' || *signal == 'x'){
       // if x key
       //exit loop when current scope ends
       running = 0;
-      
-    } else if (1==2){
-      //TODO Next:
-      // c key + enter clears
-      // current = 0
-      // history = null
+    } else if (*signal == 'C' || *signal == 'c') {
+      current = 0;
     } else {
       //perform Calculation
       current = calculate(currentOperation);
@@ -50,5 +47,7 @@ int main(int argc, const char * argv[]) {
     
   }
   
+  printf("Bye.\n");
   return EXIT_SUCCESS;
+  
 }
