@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "CalcHeader.h"
-#define MAX 20
+#include "jccalculator.h"
 
+#define MAX 20
 
 void printPrompt(float current){
   
@@ -37,7 +37,7 @@ struct KeyboardInput* getKeyboardInput(){
   
   //get character input until newline character
   
-  char *input = malloc(20 * sizeof(char));
+  char *input = malloc(MAX * sizeof(char));
   int index = 0;
   
   char c = getchar();

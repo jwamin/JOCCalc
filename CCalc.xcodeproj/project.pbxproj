@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		572AAC41243DBB92000B8303 /* CCalc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CCalc; sourceTree = BUILT_PRODUCTS_DIR; };
 		572AAC44243DBB92000B8303 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		572AAC4B243DCF7C000B8303 /* CalcHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalcHeader.h; sourceTree = "<group>"; };
+		572AAC4B243DCF7C000B8303 /* jccalculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jccalculator.h; sourceTree = "<group>"; };
 		572AAC4C243DCFC9000B8303 /* jccalculator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jccalculator.c; sourceTree = "<group>"; };
 		574FE856244096210030D05B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				572AAC44243DBB92000B8303 /* main.c */,
-				572AAC4B243DCF7C000B8303 /* CalcHeader.h */,
+				572AAC4B243DCF7C000B8303 /* jccalculator.h */,
 				572AAC4C243DCFC9000B8303 /* jccalculator.c */,
 			);
 			path = CCalc;

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "CalcHeader.h"
+#include "jccalculator.h"
 
 int main(int argc, const char * argv[]) {
   
