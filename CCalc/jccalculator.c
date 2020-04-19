@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <ctype.h>
 #include "jccalculator.h"
 
 #define MAX 20
@@ -91,7 +92,7 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
     //no program commands, continue with calcualtor input?
     
     //first check for and discount whitespace characters
-    if (currentChar == ' '){
+    if (isspace(currentChar)){
       continue;
     }
     
