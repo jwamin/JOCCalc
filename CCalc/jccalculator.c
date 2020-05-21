@@ -49,7 +49,7 @@ struct KeyboardInput* getKeyboardInput(){
   }
   
   struct KeyboardInput *myinput = malloc(sizeof(struct KeyboardInput));
-  myinput->lenght = index;
+  myinput->length = index;
   myinput->input = input;
   
   return myinput;//"2 * 4";
@@ -69,7 +69,7 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
   //assume single line calculation
   //PROMPT:> OPERAND/OPERATOR/OPERAND
   
-  int inputSize = input->lenght;
+  int inputSize = input->length;
   
   for (int i = 0;i<inputSize;i++){
     
@@ -89,7 +89,7 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
       return clear;
     }
     
-    //no program commands, continue with calcualtor input?
+    //no program commands, continue with calculator input?
     
     //first check for and discount whitespace characters
     if (isspace(currentChar)){
