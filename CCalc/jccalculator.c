@@ -14,6 +14,23 @@
 
 #define MAX 20
 
+enum ValidOperators {divide = DIVIDE, mult = MULTIPLY, add = ADD, sub = SUBTRACT};
+
+int isValidOperator(const char* inputValue) {
+    switch (*inputValue){
+        case divide:
+            return 1;
+        case mult:
+            return 1;
+        case add:
+            return 1;
+        case sub:
+            return 1;
+        default:
+            return 0;
+    }
+}
+
 void printPrompt(float current){
   
   const char* prompt = "JOCCalc ";
@@ -24,7 +41,7 @@ void printPrompt(float current){
     return;
   }
   
-  if (ceil(current) == current) {
+  if (ceilf(current) == current) {
     //round number
     printf("%s%.0f%s",prompt,current,endPrompt);
   } else {
@@ -41,7 +58,7 @@ struct KeyboardInput* getKeyboardInput(){
   char *input = malloc(MAX * sizeof(char));
   int index = 0;
   
-  char c = getchar();
+  int c = getchar();
   while (c != '\n'){
     input[index] = c;
     index++;
@@ -49,7 +66,7 @@ struct KeyboardInput* getKeyboardInput(){
   }
   
   struct KeyboardInput *myinput = malloc(sizeof(struct KeyboardInput));
-  myinput->lenght = index;
+  myinput->length = index;
   myinput->input = input;
   
   return myinput;//"2 * 4";
@@ -63,13 +80,13 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
   char rhsString[MAX];
   int rhsStringCount = 0;
   
-  float lhs, rhs;
+  double lhs, rhs;
   char operator = '\0';
   
   //assume single line calculation
   //PROMPT:> OPERAND/OPERATOR/OPERAND
   
-  int inputSize = input->lenght;
+  int inputSize = input->length;
   
   for (int i = 0;i<inputSize;i++){
     
@@ -89,7 +106,7 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
       return clear;
     }
     
-    //no program commands, continue with calcualtor input?
+    //no program commands, continue with calculator input?
     
     //first check for and discount whitespace characters
     if (isspace(currentChar)){
@@ -97,23 +114,13 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
     }
     
     //then look for operators
-    if (operator == '\0'){
-      
-      switch(currentChar){
-        case MULTIPLY:
-          operator = currentChar;
-          continue;
-        case DIVIDE:
-          operator = currentChar;
-          continue;
-        case ADD:
-          operator = currentChar;
-          continue;
-        case SUBTRACT:
-          operator = currentChar;
-          continue;
-      }
-      
+    if (operator == '\0') {
+
+        if (isValidOperator(&currentChar)) {
+            operator = currentChar;
+            continue;
+        }
+
     }
     
     //then operands
@@ -131,8 +138,8 @@ void* parseKeyboardInput(float current, struct KeyboardInput *input){
   }
   
   //get input, but truncate to int with atoi function
-  lhs = atof(lhsString);
-  rhs = atof(rhsString);
+  lhs = strtod(lhsString,NULL);
+  rhs = strtod(rhsString,NULL);
   
   float fllhs = (float)lhs;
   float flrhs = (float)rhs;

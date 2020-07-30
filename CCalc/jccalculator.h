@@ -15,7 +15,7 @@
 #define ADD '+'
 
 //Union unsuitable, shares the same memory for potentially multiple value, size of union is size of largest member
-//very intersting language feature though!
+//very interesting language feature though!
 //union ArithmeticSum {
 //  float lhs;
 //  float rhs;
@@ -31,7 +31,7 @@ struct ArithmeticOperation {
 
 //
 struct KeyboardInput {
-  int lenght;
+  int length;
   const char* input;
 };
 
